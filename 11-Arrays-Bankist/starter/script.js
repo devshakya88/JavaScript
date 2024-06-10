@@ -410,7 +410,7 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 */
-
+/*
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 // console.log(arr.flat());
 
@@ -428,6 +428,7 @@ const arrDeep = [
     [16, 17, 18],
   ],
 ];
+*/
 
 // console.log(arrDeep.flat(2));
 
@@ -466,6 +467,7 @@ console.log(accountMovements);
 
 //Sorting
 
+/*
 const owners = ['jonas', 'devender', 'deepti', 'karishma', 'martha'];
 // console.log(owners.sort());
 // console.log(owners);
@@ -487,3 +489,29 @@ console.log('Ascending -> ', movements);
 
 movements.sort((a, b) => b - a);
 console.log('Descending -> ', movements);
+*/
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(new Array([1, 2, 3, 4, 5, 6, 7, 8]));
+
+const x = new Array(7);
+console.log(x);
+
+x.fill(1, 3);
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 5);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+const movementUI = Array.from(document.querySelector('movements__value'));
+
+labelBalance.addEventListener('click', function () {
+  const movementUI = Array.from(document.querySelectorAll('.movements__value'));
+  console.log(movementUI.map(el => el.textContent.replace('€', '')));
+});
