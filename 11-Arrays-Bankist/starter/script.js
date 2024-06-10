@@ -362,6 +362,7 @@ const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
 */
 
+/*
 const calcAverageHumanAge = function (ages) {
   const humanAges = ages
     .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
@@ -375,3 +376,114 @@ const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
 console.log(avg1, avg2);
+*/
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//Equality
+// console.log(movements);
+// console.log(movements.includes(-130));
+
+//Some: Condition
+
+// console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 6000);
+// console.log(anyDeposits);
+
+//Every
+// console.log(account4.movements.every(mov => mov > 0));
+
+//Separate callback
+/*
+const deposit = mov => mov < 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+*/
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+const arrDeep = [
+  [
+    [1, 2, 3],
+    [3, 4, 6],
+  ],
+  [
+    [7, 8, 9],
+    [10, 11, 12],
+  ],
+  [
+    [13, 14, 15],
+    [16, 17, 18],
+  ],
+];
+
+// console.log(arrDeep.flat(2));
+
+/*
+const accountMovements = accounts.map(acc => acc.movements);
+
+console.log(accountMovements);
+
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+
+console.log(overalBalance);
+*/
+
+//Above Code by Chaning Menthod
+/*
+const accountMovements = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(accountMovements);
+*/
+
+//flatMap method => combine flat and map method
+
+/*
+const accountMovements = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(accountMovements);
+*/
+
+//Sorting
+
+const owners = ['jonas', 'devender', 'deepti', 'karishma', 'martha'];
+// console.log(owners.sort());
+// console.log(owners);
+
+// console.log(movements);
+// console.log(movements.sort());
+
+//return <0, A,B
+//return >0, B,A
+
+console.log(movements);
+
+//Ascending
+
+movements.sort((a, b) => a - b);
+console.log('Ascending -> ', movements);
+
+//Descending
+
+movements.sort((a, b) => b - a);
+console.log('Descending -> ', movements);
