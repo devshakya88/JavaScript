@@ -2,6 +2,33 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  countriesContainer.style.opacity = 1;
+};
+
+const renderCountry = function (data, className = '') {
+  const html = `
+  <article class="country">
+    <img class="country__img" src="${data.flags.png}" />
+    <div class="country__data">
+      <h3 class="country__name">${data.name.common}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${(
+        data.population / 1000000
+      ).toFixed(1)} million people</p>
+      <p class="country__row"><span>🗣️</span>${
+        Object.values(data.languages)[0]
+      }</p>
+      <p class="country__row"><span>💰</span>${
+        Object.values(data.currencies)[0].name
+      } (${Object.values(data.currencies)[0].symbol})</p>
+    </div>
+  </article>`;
+
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  // countriesContainer.style.opacity = 1;
+};
 
 ///////////////////////////////////////
 /*
@@ -107,6 +134,32 @@ getCountryAndNeighbour('portugal');
 // request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
 // request.send();
 
-const request = fetch(`https://restcountries.com/v3.1/name/portugal`);
+const getJSON = function (url, errorMsg = 'something went wrong') {
+  getJSON();
+  fetch(url).then(response => {
+    if (!response.ok) {
+      throw new Error(`${errorMsg} ${response.status}`);
+    }
+    return response.json();
+  });
+};
 
-console.log(request);
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => {
+      console.log(response);
+    })
+    .then(data => {
+      renderCountry(data[0]);
+    })
+    .catch(err => {
+      console.error(`${err}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener('click', function () {
+  getCountryData('portugal');
+});
