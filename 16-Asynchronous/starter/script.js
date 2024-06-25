@@ -7,6 +7,7 @@ const renderError = function (msg) {
   countriesContainer.style.opacity = 1;
 };
 
+/*
 const renderCountry = function (data, className = '') {
   const html = `
   <article class="country">
@@ -30,6 +31,7 @@ const renderCountry = function (data, className = '') {
   // countriesContainer.style.opacity = 1;
 };
 
+*/
 ///////////////////////////////////////
 /*
 const getCountryData = function (country) {
@@ -134,6 +136,7 @@ getCountryAndNeighbour('portugal');
 // request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
 // request.send();
 
+/*
 const getJSON = function (url, errorMsg = 'something went wrong') {
   getJSON();
   fetch(url).then(response => {
@@ -163,3 +166,16 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('portugal');
 });
+*/
+
+//Coding Challenge - #1
+
+const whereAmI = function (lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
+};
+
+whereAmI();
