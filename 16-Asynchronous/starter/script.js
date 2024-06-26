@@ -7,7 +7,6 @@ const renderError = function (msg) {
   countriesContainer.style.opacity = 1;
 };
 
-/*
 const renderCountry = function (data, className = '') {
   const html = `
   <article class="country">
@@ -28,10 +27,9 @@ const renderCountry = function (data, className = '') {
   </article>`;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
-*/
 ///////////////////////////////////////
 /*
 const getCountryData = function (country) {
@@ -168,14 +166,111 @@ btn.addEventListener('click', function () {
 });
 */
 
-//Coding Challenge - #1
+// console.log('Test Start');
+// setTimeout(() => {
+//   console.log('0 Sec Timer');
+// }, 0);
 
-const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    });
+// Promise.resolve('Resolved Promise 1').then(res => console.log(res));
+
+// Promise.resolve('Resolved Promise 2').then(res => {
+//   for (let i = 0; i < 10000; i++) {
+//     console.log(res);
+//   }
+// });
+
+// console.log('Test End');
+
+/*
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery Draw is Happening');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You Win 💰');
+    } else {
+      reject(new Error('You Lost😭'));
+    }
+  });
+});
+
+lotteryPromise
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
 };
 
-whereAmI();
+wait(2)
+  .then(() => {
+    console.log('I waited for 2 Seconds');
+    return wait(1);
+  })
+  .then(() => console.log('I waited for 1 Second'));
+*/
+
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+// getPosition()
+//   .then(pos => {
+//     console.log(pos);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+// const whereAmI = function () {
+//   getPosition().then(pos => {
+//     console.log(pos.coords);
+//   });
+// };
+
+//Async ans Await
+
+// const wherrAmI = async function (country) {
+//   const response = await fetch(
+//     `https://restcountries.com/v3.1/name/${country}`
+//   );
+//   const data = await response.json();
+//   console.log(data);
+//   renderCountry(data[0]);
+// };
+
+// wherrAmI('Portugal');
+// console.log('First');
+
+const fetchCountry = async function (country) {
+  try {
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${country}`
+    );
+    if (!response.ok) {
+      throw new Error('Problem getting Fetching country');
+    }
+    const data = await response.json();
+    console.log(data);
+    renderCountry(data[0]);
+  } catch (error) {
+    console.error('Error to Fetch Country');
+    renderError(`Something Went Wrong`);
+  }
+};
+
+btn.addEventListener('click', function (e) {
+  e.preventDefault();
+  fetchCountry('');
+});
